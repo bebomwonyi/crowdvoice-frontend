@@ -1,13 +1,14 @@
 import react, { Component } from 'react'
 import Header from './components/header'
 import Footer from './components/footer'
+import Login from './components/login'
 import AC from './components/ArticleContainer'
-import { Container, Card } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom"
 
 class App extends Component {
   state = {
-    articles: [],
-    articlet: ""
+    articles: []
   }
 
   componentDidMount() {
@@ -23,13 +24,23 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <Header />
-          <main>
-            <AC art={this.state.articles} />
-          </main>
-          <Footer />
-        </Container>
+        <Header />
+        <Router>
+          <Container>
+            {/* <AC art={this.state.articles} />
+            <Login/> */}
+            <Switch>
+              <Route exact path="/home" render={rp => (
+                <AC
+                  {...rp}
+                  art={this.state.articles}
+                />
+              )} />
+              <Route path="/login" component={Login} />
+            </Switch>
+          </Container>
+        </Router>
+        <Footer />
       </div>
     );
   }

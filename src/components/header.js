@@ -1,15 +1,17 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap'
 
 export const Header = () => {
   return (
-    <header>
-      <Container>
-        <Row>
-          <Col lg="auto">this is my header</Col>
-        </Row>
-      </Container>
-    </header>
+    <Navbar expand="xl" bg="dark" variant="dark">
+      <Navbar.Brand href="/home"> CrowdVoice </Navbar.Brand>
+      <Nav>
+
+      </Nav>
+      <Nav className="mr-auto">
+        <Nav.Link href="login">login</Nav.Link>
+      </Nav>
+    </Navbar>
   )
 }
 
