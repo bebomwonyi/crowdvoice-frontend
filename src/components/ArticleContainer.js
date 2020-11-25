@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Article from './Article'
+import { CardColumns } from 'react-bootstrap'
 
-class AC extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.art ?
-        this.props.art.map(art=>{
-          return <Article art={art}/>
+const AC = (props) => {
+  // console.log(props.art.articles)
+  return (
+    <div>
+      <CardColumns>
+      {props.art.articles ?
+        props.art.articles.map(art => {
+          return <Article art={art} />
         }) : null
-        }
-      </div>
-    )
-  }
+      }
+      </CardColumns>
+    </div>
+  )
 }
 
 export default AC
