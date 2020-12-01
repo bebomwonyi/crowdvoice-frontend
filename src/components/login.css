@@ -1,0 +1,5 @@
+.card{
+  min-height: 10cm;
+  display: table-cell;
+  vertical-align: middle;
+}

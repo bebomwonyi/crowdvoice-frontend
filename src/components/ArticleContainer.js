@@ -4,12 +4,13 @@ import { CardColumns } from 'react-bootstrap'
 
 const AC = (props) => {
   // console.log(props.art.articles)
+  
   return (
     <div>
       <CardColumns>
       {props.art.articles ?
         props.art.articles.map(art => {
-          return <Article art={art} />
+          return <Article art={art} openArt={props.openArt}/>
         }) : null
       }
       </CardColumns>
