@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import './login.css'
 
 class Login extends Component {
@@ -14,23 +14,25 @@ class Login extends Component {
   login = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:3000/api/v1/login",{
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
         user: {
-        username: this.state.username,
-        password: this.state.password
-    }})
+          username: this.state.username,
+          password: this.state.password
+        }
+      })
     })
-    .then(res => res.json())
-    .then(info => {
-      console.log(info)
-      localStorage.token = info.token
-    })
+      .then(res => res.json())
+      .then(info => {
+        console.log(info)
+        localStorage.setItem("token", info.jwt)
+      })
   }
+
 
   render() {
     return (
@@ -46,7 +48,7 @@ class Login extends Component {
               Password
                 <input type="password" name="password" onChange={(e) => this.handleChange(e)} />
             </label>
-            <br /><input type="submit" value="submit" />
+            <br /><input type="submit" value="submit" onClick={this.fetch}/>
           </form>
           <Card.Footer>
             <small>
