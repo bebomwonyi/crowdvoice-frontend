@@ -1,9 +1,13 @@
 import React from 'react';
+import DC from './DraftContaner'
 
-function UserDafts(props) {
+const UserDafts = (props) => {
   return (
     <div>
-      <h4>this is user draft</h4>
+      {props.user.user_articles ? 
+      props.user.user_articles.map(draft => {
+        return <DC draft={draft}/>
+      }) : null}
     </div>
   );
 }
