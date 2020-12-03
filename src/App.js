@@ -10,13 +10,13 @@ import OpenArticle from './components/OpenArticle'
 import DA from './components/draftarticle'
 import Profile from './components/profile'
 
-let article = []
 
 class App extends Component {
   state = {
     articles: [],
     opa: [],
-    user: []
+    user: [],
+    test:"test"
   }
 
 
@@ -24,10 +24,9 @@ class App extends Component {
     this.setState({
       opa: e
     })
-    article = e
   }
 
-  componentDidMount() {
+  componentWillMount() {
     Promise.all([
       fetch('https://newsapi.org/v2/everything?q=bitcoin&apiKey=e3bb5862f127496d8e3951dc20cbf723').then(value => value.json()),
       fetch('http://localhost:3000/api/v1/articles').then(value => value.json()),
@@ -37,16 +36,30 @@ class App extends Component {
           "Accept": "application/json",
           "Authorization": `Bearer ${localStorage.token}`
         }
-      }).then(value => value.json())
+      }).then(value => value.json()),
     ]).then((value) => {
       // console.log(value[0].articles)
       // console.log(value[2][0])
       this.setState({
-        articles: [...value[0].articles, value[1][0]],
+        articles: [...value[0].articles, ...value[1]],
         user: value[2][0]
       })
     })
   }
+
+  // componentDidMount(){
+  //       fetch(`/api/v1/user_articles/${this.state.user.user_articles.id}`, {
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         "Accept": "application/json",
+  //         "Authorization": `Bearer ${localStorage.token}`
+  //       }
+  //     })
+  //     .then(value => value.json())
+  //     .then(data =>{
+  //       console.log(data)
+  //     })
+  // }
 
   render() {
     return (
