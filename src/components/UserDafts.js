@@ -6,7 +6,7 @@ const UserDafts = (props) => {
     <div>
       {props.user.user_articles ? 
       props.user.user_articles.map(draft => {
-        return <DC draft={draft}/>
+        return <DC draft={draft} opd={props.opd}/>
       }) : null}
     </div>
   );
